@@ -6,6 +6,8 @@ import { ClerkProvider } from "@clerk/react";
 
 const clerkKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
+if (!clerkKey) throw new Error("Missing Clerk Publishable Key");
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ClerkProvider publishableKey={clerkKey}>

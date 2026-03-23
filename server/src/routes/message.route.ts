@@ -5,7 +5,8 @@ import { getMessages } from "../controllers/message.controller";
 
 const router = Router();
 
+router.use(protectRoutes);
 
-router.get('/:chatId', protectRoutes, getMessages)
+router.get("/:chatId", getMessages);
 
 export default router;

@@ -4,7 +4,9 @@ import { getChats, getOrCreateChat } from "../controllers/chat.controller";
 
 const router = Router();
 
-router.get("/", protectRoutes, getChats);
-router.post("/:participantId", protectRoutes, getOrCreateChat);
+router.use(protectRoutes);
+
+router.get("/", getChats);
+router.post("/:participantId", getOrCreateChat);
 
 export default router;

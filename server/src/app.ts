@@ -19,11 +19,15 @@ app.use(
   }),
 );
 
-app.use("/api/auth", authRouter);
-app.use("/api/chat", chatRouter);
-app.use("/api/message", messageRouter);
-app.use("/api/user", userRouter);
+app.get("/", (req, res) => {
+  res.send("TalkZ Chat App Server is Running");
+});
 
-app.use(errorHandler)
+app.use("/api/auth", authRouter);
+app.use("/api/chats", chatRouter);
+app.use("/api/messages", messageRouter);
+app.use("/api/users", userRouter);
+
+app.use(errorHandler);
 
 export default app;

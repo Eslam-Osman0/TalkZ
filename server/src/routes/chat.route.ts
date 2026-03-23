@@ -1,10 +1,10 @@
 import { Router, type Request, type Response } from "express";
+import { protectRoutes } from "../middleware/auth";
+import { getChats, getOrCreateChat } from "../controllers/chat.controller";
 
+const router = Router();
 
-const chatRouter = Router();
+router.get("/", protectRoutes, getChats);
+router.post("/:participantId", protectRoutes, getOrCreateChat);
 
-chatRouter.get("/", (req: Request, res: Response) => {
-    res.json({ message: "Hello From Chat Route!" });
-});
-
-export default chatRouter;
+export default router;

@@ -1,18 +1,11 @@
 import { Router, type Request, type Response } from "express";
 import { prisma } from "../config/prisma";
+import { protectRoutes } from "../middleware/auth";
+import { getMessages } from "../controllers/message.controller";
 
-const messageRouter = Router();
+const router = Router();
 
-messageRouter.get("/all", (req: Request, res: Response) => {
-  try {
-    const messages = prisma.message.findMany({});
-    return res.status(200).json({ success: true, data: messages });
-  } catch (error) {
-    console.log(error);
-    return res
-      .status(500)
-      .json({ success: false, message: "Internal Server Error" });
-  }
-});
 
-export default messageRouter;
+router.get('/:chatId', protectRoutes, getMessages)
+
+export default router;
